@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace StatePattern.Interfaces
+﻿namespace StatePattern.Interfaces
 {
 	public interface IDriveState
 	{
