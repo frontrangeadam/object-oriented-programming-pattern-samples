@@ -75,5 +75,27 @@ public class PickupTruck
 	public TruckEngine Engine { get; }
 }
 ```
+## Use `interface`s to Define the Calling Protocol
 
+To ensure creation of a viable object at author-time, we can use the Builder Pattern. This pattern is designed to guarantee that no dependencies of the final object remain unassigned.
 
+This is achieved through the use of multiple public interfaces, each with a single method. The key concept is that the single method on the first interface has a return type of the interface defining the next method in the invocation chain. 
+
+Consider the following example. Once the developer has typed `var truck = TruckBuilder` in Visual Studio, IntelliSense indicates that the only available option is to add invoke `.LightDutyTruck`. Once that happens, the next (and only permitted) step is to invoke `.WithEngine()`, supplying the necessary argument. And so on, until the final available option for the developer is to call `.Build()` to retrieve the completed object.
+
+```csharp
+    const int offRoadPkg = (int)AvailablePackages.OffRoad;
+    const int extendedCab = (int)Trim.ExtendedCab;
+    const int manual = (int)TransmissionType.Manual;
+    const int v6 = (int)EngineType.V6;
+
+    var truck = TruckBuilder
+        .LightDutyTruck
+            .WithEngine(v6)
+            .AndTransmission(manual)
+            .AndTrimOption(extendedCab)
+            .AndPackage(offRoadPkg)
+            .Build();
+```
+
+This step-by-step calling protocol guarantees that all necessary properties of the intended object are supplied.

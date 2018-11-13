@@ -11,9 +11,9 @@ namespace ObjectOrientedPatterns.Tests
 		public void BuildPickupTruckWithSpecs_ReturnsValidObject()
 		{
 			const int offRoadPkg = (int)AvailablePackages.OffRoad;
-			const int extendedCab = (int) Trim.ExtendedCab;
-			const int manual = (int) TransmissionType.Manual;
-			const int v6 = (int) EngineType.V6;
+			const int extendedCab = (int)Trim.ExtendedCab;
+			const int manual = (int)TransmissionType.Manual;
+			const int v6 = (int)EngineType.V6;
 
 			var truck = TruckBuilder
 				.LightDutyTruck
